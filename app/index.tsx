@@ -1,11 +1,8 @@
 import { Text, TextInput, View, TouchableOpacity, Image, Alert } from 'react-native';
 import React, { useContext, useState } from 'react';
 import { Link } from 'expo-router';
-import { AuthContext } from '@/contexts/auth-context';
 
 const Login = () => {
-
-  const { loginUser } = useContext(AuthContext);
 
   const [credentials, setCredentials] = useState({
     email: "",
@@ -20,22 +17,7 @@ const Login = () => {
   };
 
   const handleLogin = async () => {
-    try {
-      const response = await fetch('http://127.0.0.1:5000/api/auth/login',{
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(credentials)
-      });
-
-      const data = await response.json();
-      if(response.ok) {
-        loginUser(data.access_token, data.user);
-      }
-    } catch (error) {
-      Alert.alert('Error', 'Something went wrong!');
-    }
+    console.log(credentials);
   };
 
   return (
