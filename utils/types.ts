@@ -1,16 +1,15 @@
-import { ReactNode } from "react";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 
 export interface AuthContextType {
-    user: User | null,
+    user: any,
     token: string | null,
-    loginUser: (token: string, userData: User) => void,
-    logoutUser: () => void
+    loginUser: (token: string, redirectTo?: any) => void,
+    logoutUser: () => void,
+    setUser: Dispatch<SetStateAction<any>>,
+    setToken: Dispatch<SetStateAction<string | null>>,
+    fetchUserData: (access_token: string) => void
 }
 
 export interface AuthProviderProps {
     children: ReactNode;
-}
-
-export interface User {
-
 }

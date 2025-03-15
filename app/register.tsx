@@ -1,8 +1,15 @@
-import { Text, TextInput, View, TouchableOpacity, Image } from 'react-native';
-import React, { useState } from 'react';
-import { Link } from 'expo-router';
+import { Text, TextInput, View, TouchableOpacity, Image, Alert } from 'react-native';
+import React, { useContext, useState } from 'react';
+import { Link, useRouter } from 'expo-router';
+import { AuthContext } from '@/contexts/auth-context';
+import { saveToken } from '@/utils/auth-service';
 
 const Register = () => {
+
+  const { loginUser } = useContext(AuthContext);
+
+  const router = useRouter();
+
   const [credentials, setCredentials] = useState({
     fullName: "",
     email: "",
@@ -16,10 +23,25 @@ const Register = () => {
     });
   };
 
-  const handleRegister = () => {
-    console.log("Email:", credentials.email);
-    console.log("Password:", credentials.password);
-    // TODO: Implement API call for authentication
+  const handleRegister = async () => {
+    if(!credentials.email || !credentials.fullName || !credentials.password) {
+      Alert.alert('Sign Up Failed', 'Try Again!');
+      return;
+    }
+
+    try {
+      const response = await fetch('https://vitality-ai-server-production.up.railway.app/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
+      });
+      const data = await response.json();
+      loginUser(data['access-token'], '/create-profile');
+    } catch (error) {
+      Alert.alert('Action Failed', 'Something went wrong. Try again');
+    }
   };
 
   return (
