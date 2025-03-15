@@ -15,7 +15,7 @@ const CreateProfile = () => {
     height: '',
     weight: '',
     gender: '',
-    contact: ''
+    emergencyContact: ''
   });
 
   const handleInputChange = (field: string, value: string) => {
@@ -26,7 +26,7 @@ const CreateProfile = () => {
   };
 
   const handleSubmit = async () => {
-    if (!profile.age || !profile.height || !profile.weight || !profile.gender || !profile.contact) {
+    if (!profile.age || !profile.height || !profile.weight || !profile.gender || !profile.emergencyContact) {
       Alert.alert('Error', 'All fields are required!');
       return;
     }
@@ -117,7 +117,7 @@ const CreateProfile = () => {
         <TextInput
           className="rounded-md px-5 py-3 border border-gray-300 text-lg mt-4 bg-gray-50"
           placeholder="Contact"
-          value={profile.contact}
+          value={profile.emergencyContact}
           keyboardType='email-address'
           onChangeText={(text) => handleInputChange('contact', text)}
         />
