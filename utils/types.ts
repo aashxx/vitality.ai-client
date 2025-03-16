@@ -13,3 +13,13 @@ export interface AuthContextType {
 export interface AuthProviderProps {
     children: ReactNode;
 }
+
+export interface PredictionChartProps {
+    vitals: {
+        bmi: number,
+        temperature: number,
+        systolicBp: number,
+        diastolicBp: number,
+        heartRate: number
+    }
+}

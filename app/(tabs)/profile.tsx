@@ -58,7 +58,7 @@ const Profile = () => {
   };
 
   return (
-    <ScrollView>
+    <ScrollView className='bg-white'>
       <View className="justify-between p-6 flex-row items-center pt-10">
         <Text className="text-5xl">My Profile</Text>
         <TouchableOpacity onPress={() => setOpenModal(true)}>
@@ -69,7 +69,7 @@ const Profile = () => {
       {/* User Profile Info */}
       <View className="px-10 pt-10">
         <View className="flex-row items-center w-full gap-4 py-3 rounded-lg">
-          <View className="rounded-full bg-white h-[100px] w-[100px] items-center justify-center">
+          <View className="rounded-full bg-[whitesmoke] h-[100px] w-[100px] items-center justify-center">
             <FontAwesome5 name="user-alt" size={50} color="black" />
           </View>
           <View>
