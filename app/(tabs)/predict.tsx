@@ -40,7 +40,7 @@ const Predict = () => {
       ...vitals,
       [field]: value,
     });
-  };
+  }
 
   const makePrediction = async () => {
     try {
@@ -100,7 +100,7 @@ const Predict = () => {
     });
   
     return `${formattedDate} | ${formattedTime}`;
-  };
+  }
 
   const playAlertSound = async () => {
     try {

@@ -14,12 +14,29 @@ export interface AuthProviderProps {
     children: ReactNode;
 }
 
-export interface PredictionChartProps {
+export interface PredictionResultType {
+    timestamp: string,
+    riskLevel: 'high' | 'low',
+    hypertensionRisk: boolean,
+    cardiovascularRisk: boolean,
     vitals: {
-        bmi: number,
-        temperature: number,
-        systolicBp: number,
-        diastolicBp: number,
+        BMI: number,
+        bodyTemp: number,
+        sysBP: number,
+        diaBP: number,
         heartRate: number
     }
+}
+
+export interface PredictionResultProps {
+    result: PredictionResultType
+}
+
+export interface HistoryProviderProps {
+    children: ReactNode
+}
+
+export interface HistoryContextType {
+    predictionHistory: any[],
+    recommendations: any[]
 }
