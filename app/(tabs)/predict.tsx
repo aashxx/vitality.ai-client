@@ -9,6 +9,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Fontisto from '@expo/vector-icons/Fontisto';
 import { Audio } from 'expo-av';
+import { formatAIResponse } from '@/utils/helpers';
+import RecommendationTable from '@/components/recommendation-table';
 
 const Predict = () => {
 
@@ -34,6 +36,7 @@ const Predict = () => {
     }
   });
   const [sound, setSound] = useState<Audio.Sound | null>(null);
+  const [recommendation, setRecommendation] = useState(null);
 
   const handleInputChange = (field: string, value: string) => {
     setVitals({
@@ -128,6 +131,26 @@ const Predict = () => {
         diaBP: null
       }
     })
+  }
+
+  const generateCareRecommendations = async () => {
+    try {
+      const response = await fetch('https://vitality-ai-server-production.up.railway.app/api/recommendation/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      if(response.ok) {
+        const data = await response.json();
+        const formattedData = formatAIResponse(data.recommendation);
+        setRecommendation(formattedData);
+      }
+    } catch (error) {
+      console.error('Error generating recommendations', error);
+      Alert.alert('Action Failed', "Try again");
+    }
   }
 
   useEffect(() => {
@@ -239,12 +262,18 @@ const Predict = () => {
                 </View>
               </View>
             </View>
-            <TouchableOpacity className='mx-auto flex-row items-center justify-center gap-2 rounded-lg px-7 py-3 bg-violet-500'>
-              <FontAwesome name="magic" size={24} color="white" />
-              <Text className='text-xl text-white'>
-                Generate Care Advice
-              </Text>
-            </TouchableOpacity>
+            {
+              recommendation ? (
+                <RecommendationTable recommendation={recommendation} />
+              ) : (
+                <TouchableOpacity onPress={generateCareRecommendations} className='mx-auto flex-row items-center justify-center gap-2 rounded-lg px-7 py-3 bg-violet-500'>
+                  <FontAwesome name="magic" size={24} color="white" />
+                  <Text className='text-xl text-white'>
+                    Generate Care Advice
+                  </Text>
+                </TouchableOpacity>
+              )
+            }
           </>
         ) : (
           <>

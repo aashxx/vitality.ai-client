@@ -16,3 +16,10 @@ export const formatDateTime = (isoString: string) => {
   
     return `${formattedDate} | ${formattedTime}`;
 };
+
+export const formatAIResponse = (response: string) => {
+  const jsonString = response.replace(/```json\n|\n```/g, '');
+  const parsedData = JSON.parse(jsonString);
+
+  return parsedData;
+}

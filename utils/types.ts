@@ -40,3 +40,9 @@ export interface HistoryContextType {
     predictionHistory: any[],
     recommendations: any[]
 }
+
+export interface RecommendationTableProps {
+    recommendation: {
+        [key: string]: string[]
+    }
+}
