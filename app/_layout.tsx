@@ -44,6 +44,12 @@ export default function RootLayout() {
               headerShown: false
             }}
           />
+          <Stack.Screen 
+            name="recommendation/[id]"
+            options={{
+              headerShown: false
+            }}
+          />
         </Stack>
       </HistoryProvider>
     </AuthProvider>

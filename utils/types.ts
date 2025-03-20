@@ -46,3 +46,13 @@ export interface RecommendationTableProps {
         [key: string]: string[]
     }
 }
+
+export interface RecommendationType {
+    timestamp: string,
+    status: 'high' | 'low',
+    recommendation: string
+}
+
+export interface RecommendationCardProps {
+    recommendation: RecommendationType
+}
