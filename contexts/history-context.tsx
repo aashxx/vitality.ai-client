@@ -25,7 +25,7 @@ const HistoryProvider: React.FC<HistoryProviderProps> = ({ children }) => {
             });
             if(response.ok) {
                 const data = await response.json();
-                setPredictionHistory(data.predictions);
+                setPredictionHistory(data.predictions.reverse());
             }
         } catch (error) {
             console.error('Error fetching historic predictions', error);
@@ -43,7 +43,7 @@ const HistoryProvider: React.FC<HistoryProviderProps> = ({ children }) => {
             });
             if(response.ok) {
                 const data = await response.json();
-                setRecommendations(data.recommendations);
+                setRecommendations(data.recommendations.reverse());
             }
         } catch (error) {
             console.error('Error fetching care recommendations', error);
