@@ -143,8 +143,10 @@ const Predict = () => {
       });
       if(response.ok) {
         const data = await response.json();
-        const formattedData = formatAIResponse(data.recommendation);
-        setRecommendation(formattedData);
+        if(data.message !== "Patient is healthy, no recommendation needed.") {
+          const formattedData = formatAIResponse(data.recommendation);
+          setRecommendation(formattedData);
+        }
       }
     } catch (error) {
       console.error('Error generating recommendations', error);
@@ -282,13 +284,17 @@ const Predict = () => {
             {
               recommendation ? (
                 <RecommendationTable recommendation={recommendation} />
-              ) : (
+              ) : prediction.risk === 'high' ? (
                 <TouchableOpacity onPress={generateCareRecommendations} className='mx-auto flex-row items-center justify-center gap-2 rounded-lg px-7 py-3 bg-violet-500'>
                   <FontAwesome name="magic" size={24} color="white" />
                   <Text className='text-xl text-white'>
                     Generate Care Advice
                   </Text>
                 </TouchableOpacity>
+              ) : (
+                <Text className='text-center text-xl px-6'>
+                  Patient is healthy, no care recommendation needed
+                </Text>
               )
             }
           </>

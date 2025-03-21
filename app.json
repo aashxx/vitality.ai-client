@@ -1,12 +1,12 @@
 {
   "expo": {
     "name": "vitality.ai-app",
-    "slug": "vitality.ai-app",
+    "slug": "vitalityai-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "vitality",
-    "userInterfaceStyle": "automa tic",
+    "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true
