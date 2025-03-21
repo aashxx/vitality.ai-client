@@ -16,8 +16,6 @@ const Home = () => {
   const { user } = useContext(AuthContext);
   const { recommendations, bmiDataset, heartRateDataset } = useContext(HistoryContext);
 
-  console.log(formatAIResponse(recommendations[0].recommendation))
-
   return (
     <ScrollView className='bg-white'>
       <View className="justify-between p-6 flex-row items-center pt-10">
@@ -39,7 +37,7 @@ const Home = () => {
             </Text>
             <Ionicons className='absolute top-3 right-4' name="body" size={20} color="gray" />
             <Text className='mt-2 text-center text-3xl'>
-              {user?.BMI || "-"} 
+              {user?.BMI.toFixed(2) || "-"} 
             </Text>
           </View>
           <View className='w-[48%] relative rounded-lg border border-[#D3D3D3] px-5 pt-2 pb-6'>
@@ -81,7 +79,7 @@ const Home = () => {
         </Text>
       </View>
 
-      {heartRateDataset?.labels && heartRateDataset?.datasets ? (
+      {heartRateDataset?.labels && heartRateDataset?.datasets && user?.BMI !== "" ? (
         <View>
           <Text className="text-xl px-6 mb-4">Heart Rate Over Time</Text>
           <LineChart 
@@ -112,7 +110,7 @@ const Home = () => {
       ) : null}
 
       {/* BMI Chart */}
-      {bmiDataset?.labels && bmiDataset?.datasets ? (
+      {bmiDataset?.labels && bmiDataset?.datasets && user?.BMI !== "" ? (
         <View>
           <Text className="text-xl px-6 mb-4">BMI Over Time</Text>
           <LineChart 
@@ -146,7 +144,7 @@ const Home = () => {
           Latest Care Advice
         </Text>
         {
-          recommendations.length > 0 && (
+          recommendations.length > 0 && user?.BMI !== "" && (
             <RecommendationTable recommendation={formatAIResponse(recommendations[0].recommendation)} />
           ) 
         }

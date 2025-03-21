@@ -119,7 +119,7 @@ const CreateProfile = () => {
           placeholder="Contact"
           value={profile.emergencyContact}
           keyboardType='email-address'
-          onChangeText={(text) => handleInputChange('contact', text)}
+          onChangeText={(text) => handleInputChange('emergencyContact', text)}
         />
 
         {/* Submit Button */}

@@ -80,7 +80,7 @@ const PredictionHistory = () => {
             </Text>
             <Ionicons className='absolute top-3 right-4' name="body" size={20} color="gray" />
             <Text className='mt-2 text-center text-3xl'>
-              {result.vitals.BMI || 0} 
+              {result.vitals.BMI.toFixed(2) || 0} 
             </Text>
           </View>
           <View className='w-[48%] relative rounded-lg border border-[#D3D3D3] px-5 pt-2 pb-6'>
