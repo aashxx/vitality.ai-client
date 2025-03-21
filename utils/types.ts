@@ -38,7 +38,9 @@ export interface HistoryProviderProps {
 
 export interface HistoryContextType {
     predictionHistory: any[],
-    recommendations: any[]
+    recommendations: any[],
+    bmiDataset: any,
+    heartRateDataset: any
 }
 
 export interface RecommendationTableProps {

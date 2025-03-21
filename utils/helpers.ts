@@ -17,9 +17,22 @@ export const formatDateTime = (isoString: string) => {
     return `${formattedDate} | ${formattedTime}`;
 };
 
+export const getGreeting = () => {
+  const hours = new Date().getHours();
+
+  if (hours < 12) {
+    return "Good Morning";
+  } else if (hours < 18) {
+    return "Good Afternoon";
+  } else {
+    return "Good Evening";
+  }
+};
+
 export const formatAIResponse = (response: string) => {
   const jsonString = response.replace(/```json\n|\n```/g, '');
   const parsedData = JSON.parse(jsonString);
 
   return parsedData;
-}
+};
+
