@@ -20,16 +20,16 @@ const HistoryProvider: React.FC<HistoryProviderProps> = ({ children }) => {
     const [heartRateDataset, setHeartRateDataset] = useState({});
 
     const getChartData = (field: string, historyData: any) => {
-        const data = historyData.map((prediction) => ({
+        const data = historyData.map((prediction: any) => ({
             timestamp: new Date(prediction.timestamp).toLocaleDateString(),
             value: prediction.vitals[field]
         }));
 
         return {
-            labels: data.map(item => item.timestamp), 
+            labels: data.map((item: any) => item.timestamp), 
             datasets: [
                 {
-                    data: data.map(item => item.value),
+                    data: data.map((item: any) => item.value),
                     color: (opacity = 1) => `rgba(255, 0, 0, ${opacity})`, // Red color
                     strokeWidth: 2
                 }
