@@ -70,7 +70,6 @@ const Predict = () => {
       });
       if(response.ok) {
         const data = await response.json();
-        console.log(data);
         setPrediction(data);
       }
     } catch (error) {
@@ -153,9 +152,27 @@ const Predict = () => {
     }
   }
 
+  const sendAlertMail = async () => {
+    try {
+      const response = await fetch('https://vitality-ai-server-production.up.railway.app/api/alert/trigger', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      if(response.ok) {
+        Alert.alert('Notification sent', 'Your emergency contact was notified about this');
+      }
+    } catch (error) {
+      console.error('Error sending alert mail', error);
+    }
+  }
+
   useEffect(() => {
     if (prediction.risk === "high") {
       playAlertSound();
+      sendAlertMail();
     }
     return () => {
       if (sound) {
