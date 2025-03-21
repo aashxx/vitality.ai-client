@@ -39,8 +39,8 @@ const History = () => {
         {/* 📝 Display Search Results */}
         {filteredHistory.length > 0 ? (
           filteredHistory.map((result, idx) => (
-            <Link href={`/prediction/${result._id['$oid']}`}>
-              <ResultCard key={idx} result={result} />
+            <Link key={idx} href={`/prediction/${result._id['$oid']}`}>
+              <ResultCard result={result} />
             </Link>
           ))
         ) : (

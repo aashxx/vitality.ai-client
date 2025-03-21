@@ -37,8 +37,8 @@ const Care = () => {
 
         {filteredRecommendations.length > 0 ? (
           filteredRecommendations.map((result, idx) => (
-            <Link href={`/recommendation/${result._id['$oid']}`}>
-              <RecommendationCard key={idx} recommendation={result} />
+            <Link key={idx} href={`/recommendation/${result._id['$oid']}`}>
+              <RecommendationCard recommendation={result} />
             </Link>
           ))
         ) : (
