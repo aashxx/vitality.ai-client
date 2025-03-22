@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "vitality.ai-app",
-    "slug": "vitalityai-app",
+    "name": "vitality-ai-app",
+    "slug": "vitality-ai-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "vitality",
+    "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -32,8 +32,7 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ],
-      "expo-secure-store"
+      ]
     ],
     "experiments": {
       "typedRoutes": true

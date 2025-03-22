@@ -171,17 +171,17 @@ const Predict = () => {
     }
   }
 
-  useEffect(() => {
-    if (prediction.risk === "high") {
-      playAlertSound();
-      sendAlertMail();
-    }
-    return () => {
-      if (sound) {
-        sound.unloadAsync(); 
-      }
-    };
-  }, [prediction.risk]);
+  // useEffect(() => {
+  //   if (prediction.risk === "high") {
+  //     playAlertSound();
+  //     sendAlertMail();
+  //   }
+  //   return () => {
+  //     if (sound) {
+  //       sound.unloadAsync(); 
+  //     }
+  //   };
+  // }, [prediction.risk]);
 
   return (
     <ScrollView className='bg-white'>
@@ -283,7 +283,7 @@ const Predict = () => {
             </View>
             {
               recommendation ? (
-                <RecommendationTable recommendation={recommendation} />
+                <RecommendationTable recommendation={recommendation} />   
               ) : prediction.risk === 'high' ? (
                 <TouchableOpacity onPress={generateCareRecommendations} className='mx-auto flex-row items-center justify-center gap-2 rounded-lg px-7 py-3 bg-violet-500'>
                   <FontAwesome name="magic" size={24} color="white" />

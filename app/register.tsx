@@ -1,14 +1,11 @@
 import { Text, TextInput, View, TouchableOpacity, Image, Alert } from 'react-native';
 import React, { useContext, useState } from 'react';
-import { Link, useRouter } from 'expo-router';
+import { Link } from 'expo-router';
 import { AuthContext } from '@/contexts/auth-context';
-import { saveToken } from '@/utils/auth-service';
 
 const Register = () => {
 
   const { loginUser } = useContext(AuthContext);
-
-  const router = useRouter();
 
   const [credentials, setCredentials] = useState({
     fullName: "",

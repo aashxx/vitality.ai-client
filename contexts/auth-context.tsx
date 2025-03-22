@@ -1,6 +1,6 @@
 import { getToken, removeToken, saveToken } from '@/utils/auth-service';
 import { AuthContextType, AuthProviderProps } from '@/utils/types';
-import { usePathname, useRouter, useSegments } from 'expo-router';
+import { usePathname, useRouter } from 'expo-router';
 import React, { createContext, useEffect, useState } from 'react';
 
 export const AuthContext = createContext<AuthContextType>({

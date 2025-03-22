@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { AuthContext } from './auth-context';
 import { HistoryContextType, HistoryProviderProps } from '@/utils/types';
-import { formatDateTime } from '@/utils/helpers';
 
 export const HistoryContext = createContext<HistoryContextType>({
     predictionHistory: [],

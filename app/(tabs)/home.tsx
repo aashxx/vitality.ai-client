@@ -37,7 +37,7 @@ const Home = () => {
             </Text>
             <Ionicons className='absolute top-3 right-4' name="body" size={20} color="gray" />
             <Text className='mt-2 text-center text-3xl'>
-              {user?.BMI.toFixed(2) || "-"} 
+              {user?.BMI && user?.BMI.toFixed(2) || "-"} 
             </Text>
           </View>
           <View className='w-[48%] relative rounded-lg border border-[#D3D3D3] px-5 pt-2 pb-6'>
@@ -74,9 +74,13 @@ const Home = () => {
             </Text>
           </View>
         </View>
-        <Text className='text-[grey] text-sm my-2 text-center'>
-          Last Checked: {formatDateTime(user?.lastUpdated) || "-"}
-        </Text>
+        {
+          user?.bodyTemp && (
+            <Text className='text-[grey] text-sm my-2 text-center'>
+              Last Checked: {formatDateTime(user?.lastUpdated) || "-"}
+            </Text>
+          )
+        }
       </View>
 
       {heartRateDataset?.labels && heartRateDataset?.datasets && user?.BMI !== "" ? (
@@ -140,12 +144,14 @@ const Home = () => {
         </View>
       ) : null}
       <View className='my-6'>
-        <Text className='px-6 text-xl'>
-          Latest Care Advice
-        </Text>
         {
           recommendations.length > 0 && user?.BMI !== "" && (
-            <RecommendationTable recommendation={formatAIResponse(recommendations[0].recommendation)} />
+            <>
+              <Text className='px-6 text-xl'>
+                Latest Care Advice
+              </Text>
+              <RecommendationTable recommendation={formatAIResponse(recommendations[0].recommendation)} />
+            </>
           ) 
         }
       </View>
